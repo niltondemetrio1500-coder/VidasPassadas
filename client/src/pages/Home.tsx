@@ -133,12 +133,18 @@ function Vsl({ second, answers, go }: { second?: boolean; answers: Answers; go: 
   const player = second ? vturbPlayers.long : (isMale ? vturbPlayers.male : vturbPlayers.female);
   const releaseAt = isMale ? 302 : 297;
   const [canContinue, setCanContinue] = useState(false);
+  const [overlayVisible, setOverlayVisible] = useState(true);
   useEffect(() => {
-    if (second) return;
-    const timer = window.setTimeout(() => setCanContinue(true), releaseAt * 1000);
-    return () => window.clearTimeout(timer);
+    if (!second) {
+      const timer = window.setTimeout(() => setCanContinue(true), releaseAt * 1000);
+      return () => window.clearTimeout(timer);
+    }
   }, [second, releaseAt]);
-  return <Shell><div className="flex flex-1 flex-col items-center justify-center"><div className="mb-5 text-center"><div className="mb-3 inline-flex items-center gap-2 text-xs font-bold tracking-[.2em] text-[#f2d479]"><Star size={14} fill="currentColor" /> SUA LEITURA PERSONALIZADA</div><h2 className="text-2xl font-extrabold">{second ? `${answers.fname || "Seu"}, aqui está a sua revelação` : isMale ? `Assista até o fim para descobrir o seu resultado` : `Assista até o fim para descobrir o seu resultado`}</h2></div><div className="relative w-full max-w-[404px] overflow-hidden rounded-2xl border border-white/10 bg-black shadow-2xl"><VturbPlayer player={player.player} onTime={() => undefined} /></div>{!second && <div className={`mt-7 w-full max-w-sm transition-opacity ${canContinue ? "opacity-100" : "pointer-events-none opacity-0"}`}><Button onClick={() => go("lead")} disabled={!canContinue}>Continuar <ArrowRight className="ml-2 inline" size={18} /></Button></div>}{second && <p className="mt-5 text-center text-xs text-[#8e879b]">Você pode pausar ou avançar usando os controles do vídeo.</p>}</div></Shell>;
+  useEffect(() => {
+    const timer = window.setTimeout(() => setOverlayVisible(false), 8000);
+    return () => window.clearTimeout(timer);
+  }, [second]);
+  return <Shell><div className="flex flex-1 flex-col items-center justify-center"><div className="mb-5 text-center"><div className="mb-3 inline-flex items-center gap-2 text-xs font-bold tracking-[.2em] text-[#f2d479]"><Star size={14} fill="currentColor" /> SUA LEITURA PERSONALIZADA</div><h2 className="text-2xl font-extrabold">{second ? `${answers.fname || "Seu"}, aqui está a sua revelação` : isMale ? `Assista até o fim para descobrir o seu resultado` : `Assista até o fim para descobrir o seu resultado`}</h2></div><div className="relative w-full max-w-[404px] overflow-hidden rounded-2xl border border-white/10 bg-black shadow-2xl"><VturbPlayer player={player.player} onTime={() => undefined} /><BirthOverlay second={second} answers={answers} visible={overlayVisible} /></div>{!second && <div className={`mt-7 w-full max-w-sm transition-opacity ${canContinue ? "opacity-100" : "pointer-events-none opacity-0"}`}><Button onClick={() => go("lead")} disabled={!canContinue}>Continuar <ArrowRight className="ml-2 inline" size={18} /></Button></div>}{second && <p className="mt-5 text-center text-xs text-[#8e879b]">Você pode pausar ou avançar usando os controles do vídeo.</p>}</div></Shell>;
 }
 
 function Lead({ answers, submit }: { answers: Answers; submit: (a: Partial<Answers>) => void }) {
