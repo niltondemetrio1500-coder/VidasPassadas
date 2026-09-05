@@ -1,0 +1,8 @@
+{
+  "framework": "vite",
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist/public",
+  "rewrites": [
+    { "source": "/((?!assets/|__manus__/).*)", "destination": "/index.html" }
+  ]
+}

@@ -85,7 +85,7 @@ function Landing({ start }: { start: (gender: Gender) => void }) {
   return <Shell><div className="flex flex-1 flex-col items-center pt-24 text-center sm:pt-28">
     <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#e4b95b]/70 bg-[#201b36] px-4 py-1.5 text-[10px] font-extrabold tracking-[.16em] text-[#f2d479]">TESTE GRATUITO</div>
     <div className="relative mb-5 w-full max-w-[350px] overflow-hidden rounded-t-xl bg-[#211c43] shadow-[0_18px_45px_rgba(32,20,87,.4)] sm:max-w-[360px]">
-      <img src="/manus-storage/hero-landing-optimized_a0a5c731.jpg" alt="Mulher serena diante da silhueta de quem ela foi numa vida passada" className="block h-[135px] w-full object-cover object-center sm:h-[135px]" width="900" height="672" fetchPriority="high" decoding="async" />
+      <img src="/hero-landing-optimized.jpg" alt="Mulher serena diante da silhueta de quem ela foi numa vida passada" className="block h-[135px] w-full object-cover object-center sm:h-[135px]" width="900" height="672" fetchPriority="high" decoding="async" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[#080710] to-transparent" />
     </div>
     <h1 className="max-w-[350px] text-[1.95rem] font-black leading-[1.02] tracking-[-.035em] sm:max-w-lg sm:text-4xl">Descubra <span className="text-[#f2d479]">quem você foi</span><br /> numa <span className="text-[#f2d479]">vida passada</span></h1>
