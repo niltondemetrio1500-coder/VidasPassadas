@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+:root { font-family: "Manrope", ui-sans-serif, system-ui, sans-serif; color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body, #root { min-height: 100%; margin: 0; }
+body { background: #080710; }
+button, input, select { font: inherit; }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid #f2d479; outline-offset: 3px; }
+.stars { position: fixed; inset: 0; opacity: .52; pointer-events: none; background-image: radial-gradient(circle at 18% 22%, rgba(242,212,121,.8) 0 1px, transparent 1.5px), radial-gradient(circle at 74% 13%, rgba(255,255,255,.7) 0 1px, transparent 1.5px), radial-gradient(circle at 88% 64%, rgba(167,139,250,.8) 0 1px, transparent 1.5px), radial-gradient(circle at 39% 78%, rgba(255,255,255,.55) 0 1px, transparent 1.5px); background-size: 170px 190px, 240px 220px, 310px 270px, 260px 240px; }
+.stars::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 40%, rgba(124,58,237,.12), transparent 58%); }
+@media (prefers-reduced-motion: no-preference) { button { transition: transform .16s cubic-bezier(.23,1,.32,1), background-color .18s ease, border-color .18s ease; } }
